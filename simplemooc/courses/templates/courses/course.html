@@ -1,0 +1,36 @@
+{% extends "base.html"%}
+
+{% block content %}
+    <div class="pure-g-r content-ribbon" id="contato">
+        <div class="pure-u-1">
+            <h3>Deseja saber mais sobre o Curso</h3>
+            <form class="pure-form pure-form-aligned"> 
+                <fieldset>    
+                    <div class="pure-control-group">
+                        <label for="name">Nome</label>
+                        <input id="name" type="text" />
+                        <ul class="errolist">
+                            <li>Este campo é obrigatório</li>
+
+                            
+                        </ul> 
+                        
+                    </div>
+                
+                    <div class="pure-control-group">
+                        <label for="name">E-mail</label>
+                        <input id="name" type="text" />
+                         
+                        
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="password">Menssagem/Duvidas</label>
+                        <textare col="40" rows="4"></textarea>
+                        
+                    </div>
+                </fieldset>  
+            </form>
+        </div>
+    </div>
+
+{% endblock %} 
