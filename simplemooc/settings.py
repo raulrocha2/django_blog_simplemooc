@@ -36,10 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles', 
 
     'simplemooc.core',
-    'simplemooc.courses'
+    'simplemooc.courses',
+    'simplemooc.accounts'
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,8 @@ EMAIL_HOST_PASSWORD = 'senha'
 EMAIL_PORT = 587
 
 CONTACT_EMAIL = 'contato@cursos.com'
+
+# Auth
+LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = 'Core:home'
+LOGOUT_URL = 'accounts:logout'

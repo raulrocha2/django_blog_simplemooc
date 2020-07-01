@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 urlpatterns = [
 	path('', include('simplemooc.core.urls', namespace='Core')),
     path('curso/', include('simplemooc.courses.urls', namespace='Courses')),
+    path('accounts/', include('simplemooc.accounts.urls', namespace='Accounts')),
 	
     path('admin/', admin.site.urls),
 ]
