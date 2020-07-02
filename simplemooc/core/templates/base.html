@@ -18,7 +18,11 @@
             <li class="pure-menu-selected"><a href="{% url 'core:home'%}">Início</a></li>
             <li><a href="{% url 'Courses:index'%}">Cursos</a></li>
             <li><a href="{% url 'Core:contact'%}">Contato</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'Accounts:logout'%}">Sair</a></li>
+            {% else %}
             <li><a href="{% url 'Accounts:login'%}">Logar</a></li>
+            {% endif %}
         </ul>
     </div>    
 </div>
