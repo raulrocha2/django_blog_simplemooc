@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.conf import settings
 from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required
+from .forms import EditAccountForm
 
 @login_required
 def dashboard(request):
@@ -32,6 +33,9 @@ def register(request):
 @login_required
 def edit(request):
     template_name = 'accounts/edit.html'
-    return render(request, template_name)
+    form = EditAccountForm()
+    context = {}
+    context['form'] = form
+    return render(request, template_name, context)
 
 
