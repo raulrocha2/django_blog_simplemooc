@@ -8,10 +8,12 @@ from simplemooc.accounts import views
 app_name = 'accounts'
 
 urlpatterns = [
-	#url(r'^entrar/', include('django.contrib.auth.urls'),
-	 #{'template_name': 'accounts/login.html'}, name='login'),
+	#^$ para urls vazias e ^ para indicar a proxima url
+
+	url(r'^$', views.dashboard, name='dashboard'),
 	url(r'^entrar/', LoginView.as_view(),  name='login'),
-	url(r'sair/', LogoutView.as_view(), name='logout'),
-	url(r'cadastrar_se', views.register, name='register')
+	url(r'^sair/', LogoutView.as_view(), name='logout'),
+	url(r'^cadastrar_se', views.register, name='register'),
+	url(r'^editar', views.edit, name='edit')
 
 	]
