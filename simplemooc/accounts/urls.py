@@ -14,6 +14,8 @@ urlpatterns = [
 	url(r'^entrar/', LoginView.as_view(),  name='login'),
 	url(r'^sair/', LogoutView.as_view(), name='logout'),
 	url(r'^cadastrar_se', views.register, name='register'),
-	url(r'^editar', views.edit, name='edit')
+	url(r'^editar-senha', views.edit_password, name='edit_password'),
+	url(r'^editar', views.edit, name='edit'),
+	
 
 	]

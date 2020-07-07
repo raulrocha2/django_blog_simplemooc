@@ -1,20 +1,19 @@
 {% extends "accounts/dashboard.html" %}
+
 {% block breadcrumb %}
     {{ block.super }}
     <li>/</li>
     <li><a href="{% url 'accounts:edit' %}">Editar Conta</a></li>
-    
-{% endblock %}    
-{% block dashboard_content %}
+{% endblock %}
 
-<form class="pure-form pure-form-starcked" method="POST">
+{% block dashboard_content %}
+<form class="pure-form pure-form-stacked" method="post">
     {% csrf_token %}
     {% if success %}
-    <p>Os Dados foram alterdos com sucesso </p>
+    <p>Os dados foram alterados com sucesso</p>
     {% endif %}
     <fieldset>
         {{ form.non_field_errors }}
-
         {% for field in form %}
         <div class="pure-control-group">
             {{ field.label_tag }}
@@ -22,11 +21,9 @@
             {{ field.errors }}
         </div>
         {% endfor %}
-
         <div class="pure-controls">
-            <button type="submit" class="pure-button pure-button-primary">Enviar</button>
+            <button type="submit" class="pure-button pure-button-primary">Salvar Modificações</button>
         </div>
     </fieldset>
 </form>
-       
 {% endblock %}
