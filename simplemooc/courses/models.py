@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.conf import settings
 
 
 class CourseManager(models.Manager):
@@ -47,3 +48,38 @@ class Course(models.Model):
 		verbose_name = 'Curso'
 		verbose_name_plural = 'Cursos'
 		ordering = ['name']	
+
+#inscrição do curso 
+class Enrollment(models.Model):
+
+	STATUS_CHOICES = (
+		(0, 'Pendente'),
+		(1, 'Aprovado'),
+		(2, 'Cancelado'),
+	)
+	user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null = True,
+		 verbose_name='Usuario', related_name='enrollments' 
+		)
+	course = models.ForeignKey(
+		Course, verbose_name='Curso', on_delete=models.SET_NULL, 
+		null=True, related_name='enrollments'
+	)
+
+	status = models.IntegerField(
+		'Situação', choices=STATUS_CHOICES, default=1, blank=True
+	)
+
+	create_at = models.DateTimeField(
+		'Criado em ', auto_now_add=True
+		)
+	update_at = models.DateTimeField('Atualizado em ', auto_now=True)
+
+	def active(self):
+		self.status = 1
+		self.save()
+
+	class Meta:
+		verbose_name='Inscrição'
+		verbose_name_plural='Inscrições'
+		unique_together = (('user', 'course'))
