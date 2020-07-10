@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Course, Enrollment
 from .forms import ContactCourse
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 def index(request):
 	courses = Course.objects.all()
@@ -45,5 +46,9 @@ def enrollment(request, slug):
 	enrollment, created = Enrollment.objects.get_or_create(
 		user=request.user, course=course
 	)
-	
+	if created:
+		messagens.success(request, 'Inscrição concluida com sucesso!')
+
+	else:
+		messages.info(request, 'Você já esta inscrito neste curso!')
 	return redirect('accounts:dashboard')	

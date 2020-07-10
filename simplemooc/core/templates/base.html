@@ -30,6 +30,13 @@
 
     
 <div class="content">
+    {% if messages %}
+    <aside class="info">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </aside>
+    {% endif%}
     {% block content %} {% endblock %}   
     <div class="footer">
         Blog do Conehcimento - Uma simples plataforma de ensino a distância
