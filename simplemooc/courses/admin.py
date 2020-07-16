@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Course
+from .models import Course, Enrollment, Comment, Announcement
 
 # Customizar Course /admin Django
 class CourseAdmin(admin.ModelAdmin):
@@ -9,3 +9,4 @@ class CourseAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug':('name', 'start_date')}
 
 admin.site.register(Course, CourseAdmin)
+admin.site.register([Enrollment, Announcement, Comment])
