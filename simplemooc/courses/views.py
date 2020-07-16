@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from .models import Course, Enrollment
-from .forms import ContactCourse
+from .models import Course, Enrollment, Announcement, Comment
+from .forms import ContactCourse, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -86,3 +86,38 @@ def announcements(request, slug):
 		'announcements': course.announcements.all()
 	}		
 	return render(request, template_name, context)		
+
+@login_required
+def show_announcement(request, slug, pk):
+	course = get_object_or_404(Course, slug=slug)
+	
+	if not request.user.is_staff:
+		enrollment = get_object_or_404(Enrollment,
+			user=request.user, course=course
+		)
+		if not enrollment.is_approved():
+			messages.error(request, 'Se inscreva neste curso')
+			return redirect('accounts:dashboard')
+	announcement = get_object_or_404(course.announcements.all(), pk=pk)
+	form = CommentForm(request.POST or None)
+	
+	if form.is_valid():
+		comment = form.save(commit=False)
+		comment.user = request.user
+		comment.announcement = announcement
+		comment.save()
+		form = CommentForm()
+		messages.success(request, 'Comentario Enviado com Sucesso')
+					
+
+	template = 'courses/show_announcement.html'
+	
+	context = {
+		'course': course,
+		'announcement': announcement,
+		'form': form
+	}
+
+	return render(request, template, context)
+	
+
