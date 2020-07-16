@@ -90,7 +90,9 @@ class Enrollment(models.Model):
 		unique_together = (('user', 'course'))
 
 class Announcement(models.Model):
-	course = models.ForeignKey(Course, on_delete=models.SET_NULL, null = True, verbose_name='Curso')
+	course = models.ForeignKey(
+		Course, on_delete=models.SET_NULL, null = True, verbose_name='Curso', related_name='announcements'
+		)
 	title = models.CharField('Titulo', max_length=100)
 	content = models.TextField('Conteudo')
 	created_at = models.DateTimeField(
