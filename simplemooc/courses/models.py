@@ -50,6 +50,52 @@ class Course(models.Model):
 		verbose_name_plural = 'Cursos'
 		ordering = ['name']	
 
+
+class Lesson(models.Model):
+	name = models.CharField('Nome', max_length=100)
+	description = models.TextField('Descricao', blank=True)
+	number = models.IntegerField('Numerdo Ordem', blank=True, default=0)
+	release_date = models.DateField('Data Liberacao', blank=True, null=True)
+
+	course = models.ForeignKey(
+		Course, verbose_name='Curso', related_name='lessons', 
+		on_delete=models.SET_NULL, null=True
+		)
+	created_at = models.DateTimeField(
+		'Criado em ', auto_now_add=True
+		)
+	update_at = models.DateTimeField('Atualizado em ', auto_now=True)
+
+	def __str__(self):
+		return self.name
+
+
+	class Meta:
+		verbose_name = 'Aula'
+		verbose_name_plural = 'Aulas'
+		ordering = ['number']
+
+class Material(models.Model):
+	name = models.CharField('Nome', max_length=100)
+	embedded = models.TextField('Video embedded', blank=True )
+	fiel = models.FileField(upload_to='lessons/materials', blank=True, null=True)
+	lesson = models.ForeignKey(
+		Lesson, related_name='materials', on_delete=models.SET_NULL, 
+		null=True, verbose_name='Aula'
+		)
+	def is_embedded(self):
+		return bool(self.embedded)
+
+	def __str__(self):
+		return self.name	
+
+	class Meta:
+		verbose_name = 'Material'
+		verbose_name_plural = 'Materiais'
+			
+
+
+
 #inscrição do curso 
 class Enrollment(models.Model):
 
@@ -143,4 +189,7 @@ def post_save_annoucement(instance, created, **kwargs):
 models.signals.post_save.connect(
 	post_save_annoucement, sender=Announcement
 )	
+
+
+
 	
