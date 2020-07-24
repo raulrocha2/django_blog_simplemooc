@@ -7,6 +7,8 @@
     <meta name="description" content="Simple MOOC - Uma simples plataforma de ensino a distância" />
     <title>Blog do Conehcimento</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}" />
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
 </head>
 <body>
@@ -30,6 +32,13 @@
 
     
 <div class="content">
+    {% if messages %}
+    <aside class="info">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </aside>
+    {% endif%}
     {% block content %} {% endblock %}   
     <div class="footer">
         Blog do Conehcimento - Uma simples plataforma de ensino a distância
