@@ -6,25 +6,27 @@
     
 {% endblock %}    
 {% block dashboard_content %}
-<div class="pure-g-r content-ribbon">
-    <div class="pure-u-1">
-        <form class="pure-form pure-form-starcked"
-            <fieldset>
-                {{ form.non_field_errors }}
 
-                {% for field in form %}
-                <div class="pure-control-group">
-                    {{ field.label_tag }}
-                    {{ field }}
-                    {{ field.errors }}
-                </div>
-                {% endfor %}
+<form class="pure-form pure-form-starcked" method="POST">
+    {% csrf_token %}
+    {% if success %}
+    <p>Os Dados foram alterdos com sucesso </p>
+    {% endif %}
+    <fieldset>
+        {{ form.non_field_errors }}
 
-                <div class="pure-controls">
-                    <button type="submit" class="pure-button pure-button-primary">Enviar</button>
-                </div>
-            </fieldset>
-        </form>
-    </div> 
-</div>       
+        {% for field in form %}
+        <div class="pure-control-group">
+            {{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+        </div>
+        {% endfor %}
+
+        <div class="pure-controls">
+            <button type="submit" class="pure-button pure-button-primary">Enviar</button>
+        </div>
+    </fieldset>
+</form>
+       
 {% endblock %}

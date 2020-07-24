@@ -149,6 +149,13 @@ form.pure-form-aligned ul.errorlist li {
     max-width: 450px;
 }
 .pure-form .pure-control-group {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    /*border: 1px solid #555;*/
+    outline: none;    
+    
     margin-bottom: 1em;
 }
 .pure-button {
@@ -163,4 +170,14 @@ a.pure-button-primary {
     color: #1f8dd6;
     border-radius: 5px;
     font-size: 120%;
+}
+
+.info {
+    margin-left: auto;
+    margin-right: auto;
+	border-color: #2f80e7;
+	color: rgb(255, 255, 255);
+    background-color: #5d9cec;
+    font-size: 150%;
+    width: 50%;
 }
