@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -150,8 +151,10 @@ LOGOUT_URL = 'accounts:logout'
 LOGOUT_REDIRECT_URL = 'Core:home'
 AUTH_USER_MODEL = 'accounts.User'
 
+django_heroku.settings(locals())
+
 # Heroku settings 
-import dj_database_url
+"""import dj_database_url
 DATABASES['default'] = dj_database_url.config()
 
 # Honor the 'X-Forwaredd-Proto' header for request.is_secure()
@@ -167,3 +170,4 @@ STATICFILES_DIR = (
 
     os.path.join(BASE_DIR, 'static'),
 )
+"""
