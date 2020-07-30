@@ -32,6 +32,10 @@
                 <li>Se inscreva em um dos nossos Cursos</li>
                 {% endfor %}
                 <li class="pure-menu-heading">Minha Conta</li>
+<<<<<<< HEAD
+                <li><a href="{% url 'accounts:edit' %}">Editar Conta</a></li>
+                <li><a href="{% url 'accounts:edit_password' %}">Editar Senha</a></li>
+=======
                 <li>
                     <a href="{% url 'accounts:edit' %}">
                         <i class="far fa-edit"></i>
@@ -45,12 +49,17 @@
                     </a>
                 </li>
                 {% endblock %}
+>>>>>>> finalizado_add_curso
             </ul>
         </div>
     </div>
     <div class="pure-u-2-3">
         <div class="inner">
             {% block dashboard_content %}
+<<<<<<< HEAD
+            <p><strong>Usuário </strong>: {{ user }}</p>
+            <p><strong>E-mail </strong>: {{ user.email }}</p>
+=======
             <h2>Meus Cursos</h2>
             {% for enrollment in enrollments %}
             <div class="well">
@@ -68,6 +77,7 @@
                 <p>Nenhum curso inscrito</p>
             </aside>
             {% endfor%}
+>>>>>>> finalizado_add_curso
             {% endblock %}
         </div>
     </div>
