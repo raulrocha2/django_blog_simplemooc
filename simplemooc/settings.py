@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import django_heroku
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -126,8 +126,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+""" Conf Original local
 MEDIA_ROOT = os.path.join(BASE_DIR, 'simplemooc', 'media')
 MEDIA_URL = '/media/' 
+"""
+
+#Heroku
+STATIC_ROOT = os.path.join(BASE_DIR, 'simplemooc', 'media')
+STATIC_URL = '/media/'
+
 
 #Envio E-mails
 #Envio Modo Console
@@ -151,14 +158,14 @@ LOGOUT_URL = 'accounts:logout'
 LOGOUT_REDIRECT_URL = 'Core:home'
 AUTH_USER_MODEL = 'accounts.User'
 
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
 
 # Heroku settings 
-"""import dj_database_url
+import dj_database_url
 DATABASES['default'] = dj_database_url.config()
 
 # Honor the 'X-Forwaredd-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FOWARED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
@@ -170,4 +177,5 @@ STATICFILES_DIR = (
 
     os.path.join(BASE_DIR, 'static'),
 )
-"""
+
+

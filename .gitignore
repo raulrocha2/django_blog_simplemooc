@@ -1,5 +1,3 @@
 # Byte-compiled / optimized / DLL files
 *.pyc
 staticfiles
-__pycache__/
-*.mp4
