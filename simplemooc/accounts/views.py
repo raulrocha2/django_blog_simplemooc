@@ -12,6 +12,10 @@ from .forms import EditAccountForm, PasswordResetForm
 from .models import PasswordReset
 from simplemooc.core.utils import generate_hash_key
 
+from django.contrib import messages
+from simplemooc.courses.models import Enrollment
+
+
 User = get_user_model()
 
 @login_required
@@ -69,7 +73,12 @@ def edit(request):
         if form.is_valid():
             form.save()
             form = EditAccountForm(instance=request.user)
+
             context['success'] = True
+
+            messages.success(request, 'Dados Alterado com Sucesso!')
+            return redirect('accounts:dashboard')
+
     else:
         form = EditAccountForm(instance=request.user)
 
@@ -85,7 +94,12 @@ def edit_password(request):
         form = PasswordChangeForm(data=request.POST, user=request.user) 
         if form.is_valid():
             form.save()
+
             context['success'] = True
+
+            messages.success(request, 'Senha Editada com Sucesso!')
+            return redirect('accounts:dashboard')
+
     else:
         form = PasswordChangeForm(user=request.user)  
     context['form'] = form
