@@ -15,8 +15,10 @@ import os
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+"""
+base dir padrao local
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+"""
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -170,13 +172,16 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-STATIC_ROOT = 'staticfiles'
+# Base DIR Heroku
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
+# Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-
     os.path.join(BASE_DIR, 'static'),
 )
-
-
-DISABLE_COLLECTSTATIC=1
