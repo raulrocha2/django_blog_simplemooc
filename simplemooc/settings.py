@@ -173,7 +173,7 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
-STATICFILES_DIR = (
+STATICFILES_DIRS = (
 
     os.path.join(BASE_DIR, 'static'),
 )
