@@ -144,7 +144,7 @@ LOGOUT_URL = 'accounts:logout'
 LOGOUT_REDIRECT_URL = 'Core:home'
 AUTH_USER_MODEL = 'accounts.User'
 
-#django_heroku.settings(locals())
+
 
 # Heroku settings 
 import dj_database_url
@@ -167,4 +167,3 @@ try:
 except ImportError:
     pass    
 
-django_heroku.settings(locals())
