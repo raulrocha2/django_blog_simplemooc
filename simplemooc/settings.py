@@ -162,6 +162,8 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile')
 STATIC_URL = '/static/'
 
+DISABLE_COLLECTSTATIC=1
+
 try:
     from simplemooc.local_settings import *
 except ImportError:
