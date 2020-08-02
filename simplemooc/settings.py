@@ -169,4 +169,3 @@ try:
 except ImportError:
     pass    
 
-django_heroku.settings(locals())
