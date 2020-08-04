@@ -12,12 +12,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -27,7 +24,8 @@ SECRET_KEY = '93^=goz*0ks++&1p8-z9oxbby1*83q_v=e&uwqf07y!0@5yjn6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['https://cursos-simplemooc-68308.herokuapp.com/']
+TEMPLATE_DEBUG = False
+ALLOWED_HOSTS = []
 
 
 
@@ -118,7 +116,12 @@ USE_TZ = True
 
 
 
- 
+ # https://docs.djangoproject.com/en/3.0/howto/static-files/
+STATIC_URL = '/static/'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'simplemooc', 'media')
+MEDIA_URL = '/media/'
 
 
 #Envio E-mails
