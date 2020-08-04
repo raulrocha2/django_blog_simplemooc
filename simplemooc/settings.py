@@ -161,10 +161,13 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles',)
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
-
+STATICFILES_DIR = [
+    os.path.join(BASE_DIR, "static")
+   
+]
 
 try:
     from simplemooc.local_settings import *
