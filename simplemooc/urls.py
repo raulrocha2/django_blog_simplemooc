@@ -14,7 +14,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf.urls import url
 from django.urls import path, include
 from simplemooc.core import views, urls
 from simplemooc.courses import views, urls
@@ -34,7 +33,4 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG == False:
-    pattern = r'^%s/(?P.*)$' % settings.STATIC_URL
-    urlpatterns += pattern('django.views.static',
-    url(pattern, 'serve', {'document_root': settings.STATIC_ROOT}),
-)    
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
