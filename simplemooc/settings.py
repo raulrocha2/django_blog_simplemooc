@@ -117,7 +117,7 @@ USE_TZ = True
 
 
  # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_URL = '/static/'
+
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'simplemooc', 'media')
@@ -164,7 +164,9 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
-
+STATICFILES_DIR = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 try:
     from simplemooc.local_settings import *
