@@ -164,7 +164,10 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
-
+STATICFILES_DIR = [
+    os.path.join(BASE_DIR, "static")
+   
+]
 
 try:
     from simplemooc.local_settings import *
