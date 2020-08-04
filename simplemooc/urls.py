@@ -35,6 +35,6 @@ if settings.DEBUG:
 
 if settings.DEBUG == False:
     pattern = r'^%s/(?P.*)$' % settings.STATIC_URL
-    urlpatterns += patterns('django.views.static',
+    urlpatterns += pattern('django.views.static',
     url(pattern, 'serve', {'document_root': settings.STATIC_ROOT}),
 )    
