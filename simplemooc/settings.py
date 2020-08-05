@@ -173,6 +173,9 @@ STATICFILES_DIR = [
    
 ]
 
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 try:
     from simplemooc.local_settings import *
 except ImportError:
