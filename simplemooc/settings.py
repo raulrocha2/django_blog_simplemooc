@@ -165,10 +165,8 @@ os.path.join(BASE_DIR, 'simplemooc/core', 'static')
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn", "static_root")
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'simplemooc', 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'media')
 MEDIA_URL = '/media/' 
-
-
 
 
 try:
