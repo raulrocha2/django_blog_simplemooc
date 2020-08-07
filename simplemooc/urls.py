@@ -27,7 +27,7 @@ urlpatterns = [
     path('conta/', include('simplemooc.accounts.urls', namespace='Accounts')),
 	
     path('admin/', admin.site.urls),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_RO
 
 
 if settings.DEBUG:
