@@ -25,10 +25,6 @@ SECRET_KEY = '93^=goz*0ks++&1p8-z9oxbby1*83q_v=e&uwqf07y!0@5yjn6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,7 +45,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     
     
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+   
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -124,10 +120,6 @@ USE_TZ = True
 
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'simplemooc', 'media')
-MEDIA_URL = '/media/'
-
-
 #Envio E-mails
 #Envio Modo Console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -165,13 +157,16 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-STATICFILES_DIR = [
-    os.path.join(BASE_DIR, 'static')
-   
+STATICFILES_DIRS = [
+os.path.join(BASE_DIR, 'simplemooc/core', 'static')
 ]
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "static_root")
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'simplemooc', 'media')
+MEDIA_URL = '/media/' 
 
 
 
