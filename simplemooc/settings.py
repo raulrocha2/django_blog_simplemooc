@@ -159,16 +159,22 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
+MEDIA_ROOT = os.path.join(BASE_DIR, 'simplemooc', 'media')
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
+"""STATICFILES_DIRS = [
 os.path.join(BASE_DIR, 'simplemooc/core', 'static')
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn", "static_root")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'media')
-MEDIA_URL = '/media/' 
+MEDIA_URL = '/media/'  """
 
-
+ 
 try:
     from simplemooc.local_settings import *
 except ImportError:
