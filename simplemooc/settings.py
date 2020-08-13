@@ -25,7 +25,7 @@ SECRET_KEY = '93^=goz*0ks++&1p8-z9oxbby1*83q_v=e&uwqf07y!0@5yjn6'
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = False
-DISABLE_COLLECTSTATIC=1
+
 
 # Application definition
 
