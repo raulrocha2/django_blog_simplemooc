@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from taggit.managers import TaggableManager
 
+
 #Tabela comentarios
 class Thread(models.Model):
     title = models.CharField('Titulo', max_length=100)

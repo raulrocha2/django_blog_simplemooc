@@ -5,6 +5,7 @@ from .models import Thread
 #class ForumView(TemplateView):
     #template_name = 'forum/index.html'
 
+
 class ForumView(ListView):
     model = Thread
     paginate_by = 2
