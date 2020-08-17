@@ -174,10 +174,15 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_URL = '/static/'
 
-
-STATICFILES_DIRS = [
+# Funcionando arquivos local
+'''STATICFILES_DIRS = [
 os.path.join(BASE_DIR, 'simplemooc/core', 'static')
-]
+]'''
+
+#arquivos deploy
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 #STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn", "static_root")
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
