@@ -60,7 +60,7 @@
                     <i class="fa fa-tags"></i>
                     Tags:
                     {% for tag in thread.tags.all %}
-                    <a href="" title="{{ tag }}"></a>
+                    <a href="" title="">{{ tag }}</a>{% if not forloop.last%}, {% endif %}
                     {% endfor %}
                     <a class="fright" href="" title="">Atualizado a {{ thread.modified|timesince }} atrás</a>
                 </p>
@@ -69,17 +69,17 @@
             <ul class="pagination pagination-centered">
                 {% if page_obj.has_previous %}
                 <li> 
-                    <a href="?page={{ page_obj.previous_page_number}}" title="">Anterior</a>
+                    <a href="?page={{ page_obj.previous_page_number}}{% if request.GET.order %}&order={{ request.GET.order }}{% endif%}" title="">Anterior</a>
                 </li>
                 {% endif %}
                 {% for page in paginator.page_range %}
                 <li {% if page == page_obj.number%} class="active" {% endif %}>
-                    <a href="?page={{ page }}" title="">{{ page }}</a>
+                    <a href="?page={{ page }}{% if request.GET.order %}&order={{ request.GET.order }}{% endif%}" title="">{{ page }}</a>
                 </li>
                 {% endfor %}
                 {% if page_obj.has_next %}
                 <li> 
-                    <a href="?page={{ page_obj.next_page_number}}" title="">Proxima</a>
+                    <a href="?page={{ page_obj.next_page_number}}{% if request.GET.order %}&order={{ request.GET.order }}{% endif%}" title="">Proxima</a>
                 </li>
                 {% endif %}
             </ul>
