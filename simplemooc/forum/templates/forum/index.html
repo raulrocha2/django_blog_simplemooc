@@ -16,7 +16,7 @@
                 </li>
                 <li>
                     <a href="?order=">
-                        <i class="fa fa-refresh"></i>
+                        <i class="far fa-arrow-alt-circle-up"></i>
                         Mais Recentes
                     </a>
                 </li>
@@ -29,7 +29,7 @@
                 <li>
                    
                     <a href="?order=answers">
-                        <i class="fa fa-comments-o"></i>
+                        <i class="fas fa-comment-medical"></i>
                         Mais Comentados
                     </a>
                 </li>
@@ -73,7 +73,7 @@
                 </li>
                 {% endif %}
                 {% for page in paginator.page_range %}
-                <li>
+                <li {% if page == page_obj.number%} class="active" {% endif %}>
                     <a href="?page={{ page }}" title="">{{ page }}</a>
                 </li>
                 {% endfor %}
