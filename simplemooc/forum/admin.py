@@ -4,9 +4,10 @@ from .models import Thread, Replay
 
 
 class ThreadAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'created', 'modified']
+    list_display = ('title','__str__','slug', 'author', 'created', 'modified')
     search_fields = ['title', 'author__email', 'body']
-
+    prepopulated_fields = {'slug':('title', 'author')}
+    
 
 class ReplayAdmin(admin.ModelAdmin):
     list_display = ['thread', 'author', 'created', 'modified']

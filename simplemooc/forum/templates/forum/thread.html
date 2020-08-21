@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="pure-g-r content-ribbon">
+    <div class="pure-u-1">
+        <ul class="breadcrumb">
+            <a href="{% url 'core:home' %}">Início</a>
+        / <a href="{% url 'Forum:index' %}">Fórum de Discussões</a>
+        / <a href="{{ object.get_absolute_url }}"> {{ object }}</a>
+
+        </ul>
+    
+    
+            
+        
+    </div>
+</div>
+{% endblock %}

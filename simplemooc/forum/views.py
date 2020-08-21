@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, View
+from django.views.generic import TemplateView, ListView, DetailView
 from .models import Thread
 
 #class ForumView(TemplateView):
@@ -19,6 +19,9 @@ class ForumView(ListView):
             queryset = queryset.order_by('-views')
         elif order == 'answers':
             queryset = queryset.order_by('-answers')
+        tag = self.kwargs.get('tag', '')
+        if tag:
+            queryset = queryset.filter(tags__slug__in=tag)    
         return queryset        
 
     def get_context_data(self, **kwargs):
@@ -26,4 +29,15 @@ class ForumView(ListView):
         context['tags'] = Thread.tags.all()
         return context
 
-index = ForumView.as_view()    
+
+class ThreadView(DetailView):
+    queryset = Thread.objects.all()
+    template_name = 'forum/thread.html'        
+
+    def get_context_data(self, **kwargs):
+        context = super(ThreadView, self).get_context_data(**kwargs)
+        context['tags'] = Thread.tags.all()
+        return context
+
+index = ForumView.as_view()   
+thread = ThreadView.as_view() 

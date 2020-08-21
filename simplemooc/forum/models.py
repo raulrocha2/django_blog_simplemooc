@@ -2,10 +2,13 @@ from django.db import models
 from django.conf import settings
 from taggit.managers import TaggableManager
 
+from django.db.models.signals import pre_save
+from django.urls import reverse
 
 #Tabela comentarios
 class Thread(models.Model):
     title = models.CharField('Titulo', max_length=100)
+    slug = models.SlugField('Identificador', unique=True)
     body = models.TextField('Mensagem')
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, verbose_name='Autor', related_name='threads',
@@ -20,13 +23,20 @@ class Thread(models.Model):
     created = models.DateTimeField('Criado em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em ', auto_now=True)    
 
-    def _str__(self):
+    def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('Forum:thread', kwargs={'slug': self.slug})
+
 
     class Meta:
         verbose_name='Topico'
         verbose_name_plural = 'Topicos'
         ordering = ['-modified']    
+
+      
+
 
 class Replay(models.Model):
     thread = models.ForeignKey(
@@ -50,3 +60,4 @@ class Replay(models.Model):
         verbose_name='Resposta'
         verbose_name_plural='Respostas'
         ordering=['-correct','created']
+
