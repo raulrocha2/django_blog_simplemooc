@@ -5,6 +5,7 @@ from taggit.managers import TaggableManager
 from django.db.models.signals import pre_save
 from django.urls import reverse
 
+
 #Tabela comentarios
 class Thread(models.Model):
     title = models.CharField('Titulo', max_length=100)
@@ -25,9 +26,10 @@ class Thread(models.Model):
 
     def __str__(self):
         return self.title
-
+    
+    
     def get_absolute_url(self):
-        return reverse('Forum:thread', kwargs={'slug': self.slug})
+        return reverse('Forum:thread', kwargs={'slug': self.slug })
 
 
     class Meta:
@@ -55,9 +57,28 @@ class Replay(models.Model):
     def __str__(self):
         return self.replay[:50]
 
+   
 
     class Meta:
         verbose_name='Resposta'
         verbose_name_plural='Respostas'
         ordering=['-correct','created']
 
+def post_save_replay(created, instance, **kwargs):
+    instance.thread.answers = instance.thread.replies.count()
+    instance.thread.save()
+    if instance.correct:
+        instance.thread.replies.exclude(pk=instance.pk).update(
+            correct=False
+        )
+
+def post_delete_replay(instance, **kwargs):
+    instance.thread.answers=instance.thread.replies.count()
+    instance.thread.save()
+
+models.signals.post_save.connect(
+    post_save_replay, sender=Replay, dispatch_uid='post_save_replay'
+)    
+models.signals.post_delete.connect(
+    post_save_replay, sender=Replay, dispatch_uid='post_delete_replay'
+)

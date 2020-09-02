@@ -10,9 +10,102 @@
 
         </ul>
     
-    
-            
-        
+     </div>
+    <div class="pure-u-1-3">
+        <div class="pure-menu pure-menu-open">
+            <ul>
+                <li class="pure-menu-heading">
+                    Tópicos do Fórum
+                </li>
+                <li>
+                    <a href="?order=">
+                        <i class="far fa-arrow-alt-circle-up"></i>
+                        Mais Recentes
+                    </a>
+                </li>
+                <li>
+                    <a href="?order=views">
+                        <i class="fa fa-eye"></i>
+                        Mais Visualizados
+                    </a>
+                </li>
+                <li>
+                   
+                    <a href="?order=answers">
+                        <i class="fas fa-comment-medical"></i>
+                        Mais Comentados
+                    </a>
+                </li>
+                <li class="pure-menu-heading">Tags</li>
+                <li>
+                    {% for tag in tags %}
+                    <a href="{% url 'Forum:index_tagged' tag.slug %}" class="tags">
+                        <i class="fa fa-tag"></i>
+                        {{ tag }}
+                    </a>
+                    {% endfor %}                    
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="pure-u-2-3">
+        <div class="inner">
+          <div class="well">
+              <h2>{{ object }}</h2>
+              {{ object.body|linebreaks }}
+              <h5>
+                  Criado por {{ object.author }}
+              </h5>
+              <p>
+                  <i class="fa fa-tags"></i>
+                  {% for tag in object.tag.all %}
+                  <a href="{% url 'Forum:index_tagged' tag.slug %}" title="">{{ tag }}</a> {% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+                  <a class="fright" href="" title=""> Criado a {{ object.created|timesince }} atras</a>
+              </p>
+          </div>
+            <div class="well" >
+                <h4 id="comments">Respostas
+                    <a class="fright" href="#add_comment">Responder</a>
+                </h4>
+                {% for replay in object.replies.all %}
+                <hr />
+                <p>
+                    <strong>{{ replay.author }}</strong> disse a {{replay.created|timesince }} atras:
+                    <br />
+                    {{ replay.replay|linebreaksbr }}
+                    <br />
+                    {% if replay.correct %}
+                        <br />
+                        {% if replay.author == user %}
+                        <a href="{% url 'Forum:replay_incorrect' replay.pk %}" title="" class="pure-button button-error">Cancelar Resposta Indicada</a>
+                        {% endif %}
+                        <span class="fright label-success">resposta recomendada pelo autor </span>
+                    {% elif replay.author == user %} 
+                        
+                        <a href="{% url 'Forum:replay_correct' replay.pk %}" title="" class="pure-button button-success">Resposta Indicada</a>
+                        <br />   
+                    {% endif %}
+                </p>
+                {% endfor %}
+                <hr />
+            </div>
+            <form method="POST", class="pure-form pure-form-stacked" id="add_comment">
+                <fieldset>
+                    {% csrf_token%}
+                    {% for field in form %}
+                    <div class="pure-control-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {{ field.errors }}
+                    </div>
+                    {% endfor %}
+                    <div class="pure-controls">
+                        <button type="submit" class="pure-button pure-button-primary">Enviar</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}
