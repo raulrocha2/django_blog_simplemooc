@@ -20,5 +20,5 @@ sqlparse==0.3.1
 static3==0.7.0
 style==1.1.0
 update==0.0.1
-urllib3==1.22
+urllib3==1.26.5
 whitenoise==5.1.0
