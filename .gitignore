@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
 *.pyc
 staticfiles
-__pycache__/
-*.mp4
+local_settings.py
+db.sqlite3

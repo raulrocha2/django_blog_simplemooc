@@ -25,9 +25,10 @@ urlpatterns = [
 	path('', include('simplemooc.core.urls', namespace='Core')),
     path('curso/', include('simplemooc.courses.urls', namespace='Courses')),
     path('conta/', include('simplemooc.accounts.urls', namespace='Accounts')),
+    path('forum/', include('simplemooc.forum.urls', namespace='Forum')),
 	
     path('admin/', admin.site.urls),
-]
+] 
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
